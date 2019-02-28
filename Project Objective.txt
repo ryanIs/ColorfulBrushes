@@ -1,7 +1,0 @@
-Create an application using:
-
-Backbone.js
-
-Grunt.js
-
-LESS
