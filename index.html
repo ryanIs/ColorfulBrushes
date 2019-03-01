@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+    <head>
+
+        <title>Colorful Brushes</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport-width" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Ryan Isler">
+        <meta name="description" content="Colorful brushes is a simple CRUD application built with backbone.js.">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet/less" type="text/css" href="css/styles.less">
+
+        <!-- requirejs -->
+        <script data-main="scripts/main" src="scripts/require.js"></script>
+
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="header">
+                <div class="header-bar">
+                    <h1 class="application-header-text">Colorful Brushes</h1>
+
+                    <span class="navigation">
+                        <button id="create-btn" type="button" class="btn btn-outline-secondary">New Brush</button>
+                    </span>
+                </div>
+
+                <div class="create-UI-wrapper">
+                    <div class="create-UI">
+                        <hr>
+
+                        <div class="create-header">
+                            <div class="mini-canvas">
+                                <div id="new-brush-color" class="mini-brush" style="background-color: #444; "></div>
+                            </div>
+                            <input type="text" placeholder="Brush name" maxlength="16" value="" id="create-name">
+                            <input type="text" placeholder="Price ($)" maxlength="6" value="" id="create-price">
+                            <button id="add-btn" type="button" class="btn btn-outline-success">Add</button>
+                        </div>
+
+                        <div class="create-body-wrapper">
+                            <div class="create-body">
+                                <div class="select-brush mini-brush" style="background-color: #E52B50"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FFBF00"></div>
+                                <div class="select-brush mini-brush" style="background-color: #9966CC"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FBCEB1"></div>
+                                <div class="select-brush mini-brush" style="background-color: #7FFFD4"></div>
+                                <div class="select-brush mini-brush" style="background-color: #007FFF"></div>
+                                <div class="select-brush mini-brush" style="background-color: #89CFF0"></div>
+                                <div class="select-brush mini-brush" style="background-color: #F5F5DC"></div>
+                                <div class="select-brush mini-brush" style="background-color: #000000"></div>
+                                <div class="select-brush mini-brush" style="background-color: #0000FF"></div>
+                                <div class="select-brush mini-brush" style="background-color: #0095B6"></div>
+                                <div class="select-brush mini-brush" style="background-color: #8A2BE2"></div>
+                                <div class="select-brush mini-brush" style="background-color: #DE5D83"></div>
+                                <div class="select-brush mini-brush" style="background-color: #CD7F32"></div>
+                                <div class="select-brush mini-brush" style="background-color: #964B00"></div>
+                                <div class="select-brush mini-brush" style="background-color: #800020"></div>
+                                <div class="select-brush mini-brush" style="background-color: #702963"></div>
+                                <div class="select-brush mini-brush" style="background-color: #960018"></div>
+                                <div class="select-brush mini-brush" style="background-color: #DE3163"></div>
+                                <div class="select-brush mini-brush" style="background-color: #007BA7"></div>
+                                <div class="select-brush mini-brush" style="background-color: #F7E7CE"></div>
+                                <div class="select-brush mini-brush" style="background-color: #7FFF00"></div>
+                                <div class="select-brush mini-brush" style="background-color: #7B3F00"></div>
+                                <div class="select-brush mini-brush" style="background-color: #0047AB"></div>
+                                <div class="select-brush mini-brush" style="background-color: #6F4E37"></div>
+                                <div class="select-brush mini-brush" style="background-color: #B87333"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FF7F50"></div>
+                                <div class="select-brush mini-brush" style="background-color: #DC143C"></div>
+                                <div class="select-brush mini-brush" style="background-color: #00FFFF"></div>
+                                <div class="select-brush mini-brush" style="background-color: #EDC9Af"></div>
+                                <div class="select-brush mini-brush" style="background-color: #7DF9FF"></div>
+                                <div class="select-brush mini-brush" style="background-color: #50C878"></div>
+                                <div class="select-brush mini-brush" style="background-color: #00FF3F"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FFD700"></div>
+                                <div class="select-brush mini-brush" style="background-color: #808080"></div>
+                                <div class="select-brush mini-brush" style="background-color: #008000"></div>
+                                <div class="select-brush mini-brush" style="background-color: #3FFF00"></div>
+                                <div class="select-brush mini-brush" style="background-color: #4B0082"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FFFFF0"></div>
+                                <div class="select-brush mini-brush" style="background-color: #00A86B"></div>
+                                <div class="select-brush mini-brush" style="background-color: #29AB87"></div>
+                                <div class="select-brush mini-brush" style="background-color: #B57EDC"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FFF700"></div>
+                                <div class="select-brush mini-brush" style="background-color: #C8A2C8"></div>
+                                <div class="select-brush mini-brush" style="background-color: #BFFF00"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FF00FF"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FF00AF"></div>
+                                <div class="select-brush mini-brush" style="background-color: #E0B0FF"></div>
+                                <div class="select-brush mini-brush" style="background-color: #CC7722"></div>
+                                <div class="select-brush mini-brush" style="background-color: #808000"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FF6600"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FF4500"></div>
+                                <div class="select-brush mini-brush" style="background-color: #DA70D6"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FFE5B4"></div>
+                                <div class="select-brush mini-brush" style="background-color: #D1E231"></div>
+                                <div class="select-brush mini-brush" style="background-color: #CCCCFF"></div>
+                                <div class="select-brush mini-brush" style="background-color: #1C39BB"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FD6C9E"></div>
+                                <div class="select-brush mini-brush" style="background-color: #8E4585"></div>
+                                <div class="select-brush mini-brush" style="background-color: #003153"></div>
+                                <div class="select-brush mini-brush" style="background-color: #CC8899"></div>
+                                <div class="select-brush mini-brush" style="background-color: #E30B5C"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FF0000"></div>
+                                <div class="select-brush mini-brush" style="background-color: #C71585"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FF007F"></div>
+                                <div class="select-brush mini-brush" style="background-color: #E0115F"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FA8072"></div>
+                                <div class="select-brush mini-brush" style="background-color: #92000A"></div>
+                                <div class="select-brush mini-brush" style="background-color: #0F52BA"></div>
+                                <div class="select-brush mini-brush" style="background-color: #FF2400"></div>
+                                <div class="select-brush mini-brush" style="background-color: #C0C0C0"></div>
+                                <div class="select-brush mini-brush" style="background-color: #708090"></div>
+                            </div>
+                        </div> <!-- create body wrapper -->
+                    </div>
+                </div>
+
+                <hr>
+            </div>
+
+            <div id="app"></div>
+        </div>
+
+    </body>
+
+    <!-- Brush View (underscore.js) -->
+    <script type="text/template" id="brush-view-template">
+        <div class="brush-wrapper col-xs-12" id="<%= id %>">
+            <span class="delete-btn" id="<%= id %>">x</span>
+            <div class="brush-canvas">
+                <div class="brush-object"></div>
+                <div style="background: <%= color %>;" class="brush-image"></div>
+            </div>
+            <input class='brush-name' type="text" maxlength="16" value="<%= name %>">
+            <input class='brush-price' type="text" maxlength="6" value="<%= price %>">
+        </div>
+    </script>
+
+</html>

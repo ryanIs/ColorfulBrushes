@@ -1,0 +1,243 @@
+/* Variables */
+
+@brushWrapperWidth: 350px;
+@brushWrapperHeight: @brushWrapperWidth;
+@brushCanvasWidth: 250px;
+@brushCanvasHeight: @brushCanvasWidth;
+
+@brushFontSize: 15px;
+@brushHandleColor: black;
+@brushHandleHighlightColor: #ccc;
+@brushBrushColor: gray;
+@brushLeft: (@brushCanvasWidth / 2) - 5em;
+
+/* Functions (mixin) */
+
+.drawBrush() {
+    font-size: @brushFontSize;
+    box-shadow: 0 0 0 0 @brushHandleColor, 
+
+
+
+    /* Handle */
+    0em 1em 0 0 @brushBrushColor, 
+    0em 2em 0 0 @brushBrushColor, 
+    0em 3em 0 0 @brushBrushColor, 
+    0em 4em 0 0 @brushHandleColor, 
+    0em 5em 0 0 @brushHandleColor, 
+    0em 6em 0 0 @brushHandleColor, 
+    0em 7em 0 0 @brushHandleColor, 
+    
+    1em 1em 0 0 @brushBrushColor, 
+    1em 2em 0 0 @brushBrushColor, 
+    1em 3em 0 0 @brushHandleColor, 
+    1em 4em 0 0 @brushHandleColor, 
+    1em 5em 0 0 @brushHandleColor, 
+    1em 6em 0 0 @brushHandleColor, 
+    1em 7em 0 0 @brushHandleColor, 
+    
+    -1em 1em 0 0 @brushHandleHighlightColor, 
+    -1em 2em 0 0 @brushHandleHighlightColor, 
+    -1em 3em 0 0 @brushHandleHighlightColor, 
+    -1em 4em 0 0 @brushHandleHighlightColor, 
+    -1em 5em 0 0 @brushBrushColor, 
+    -1em 6em 0 0 @brushBrushColor, 
+    -1em 7em 0 0 @brushHandleColor;
+    
+    width: 1em; 
+    height: 1em; 
+    position: relative;
+    left: @brushLeft;
+    bottom: -130px;
+}
+
+.boxShadow(@alphaChannel) {
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, @alphaChannel);
+}
+
+/* GLOBAL */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #efefef;
+}
+
+/* Header */
+
+.header-bar {
+    width: auto;
+    height: 70px;
+}
+
+.application-header-text {
+    width: 40%;
+    margin: 5px 0;
+    padding: 5px 0;
+    float: left;
+}
+
+.navigation {
+    width: 55%;
+    margin: 10px 0;
+    float: right;
+    * {
+        float: right;
+    }
+}
+
+/* Create new */
+
+.create-UI {
+    width: 100%;
+    height: 305px;
+    clear: both;
+    
+    hr {
+        margin-bottom: 0;
+    }
+}
+
+.mini-canvas {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    .boxShadow(0.2);
+}
+
+.mini-brush {
+    font-size: @brushFontSize;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    left: 10px;
+    bottom: -10px;
+
+    background: #555;
+    border-radius: 20px 0 20px 0;
+    box-shadow: inset 4px 4px 10px 5px rgba(255,255,255,0.5),
+                inset -1px -1px 2px 3px rgba(122,122,122,0.1);
+
+    transform: rotate(0deg);
+}
+
+.create-header {
+    padding: 10px 0 0 50px;
+    width: auto;
+    height: 90px;
+    border-bottom: 5px dashed #ddd;
+    border-radius: 0 0 30px 30px;
+    * {
+        margin-right: 12px;
+    }
+    input {
+        float: left;
+        margin-top: 13px;
+        padding: 7px 4px;
+    }
+    .mini-canvas {
+        float: left;
+    }
+    #add-btn {
+        float: right;
+        margin-top: 13px;
+    }
+    background: #f5f5f5;
+}
+
+.create-body-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: auto;
+}
+
+.create-body {
+    width: 1110px !important;
+    .mini-brush {
+        margin: 5px 10px;
+        float: left;
+        opacity: 1;
+        cursor: pointer;        
+    }
+    .mini-brush:hover {
+        opacity: 0.7;
+    }
+}
+
+#create-name {
+    width: 200px;
+}
+#create-price {
+    width: 90px;
+}
+
+/* Brushes */
+
+.brush-wrapper {
+    width: @brushWrapperWidth;
+    height: @brushWrapperHeight;
+    margin: 5px 10px;
+    background: #fff;
+    .boxShadow(0.2);
+    text-align: center;
+    float: left;
+    h1, .brush-name {
+        font-size: 16px;
+        color: #444;
+    }
+    h2, .brush-price {
+        font-size: 10px;
+        color: #aaa;
+    }
+    input {
+        border: none;
+        background: none;
+        text-align: center;
+        width: 100%;
+    }
+    input:focus {
+        border: none;
+    }
+}
+
+.brush-canvas {
+    width: @brushCanvasWidth;
+    height: @brushCanvasHeight;
+    margin: 10px auto;
+    display: block;
+    background: #f9f9f9;
+}
+
+.brush-image {
+    font-size: @brushFontSize;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    bottom: -80px;
+    left: @brushLeft - 12em;
+
+    border-radius: 20px 0 20px 0;
+    box-shadow: inset 4px 4px 10px 5px rgba(255,255,255,0.5),
+                inset -1px -1px 2px 3px rgba(122,122,122,0.1);
+
+    transform: rotate(0deg);
+}
+
+.brush-object {
+    .drawBrush();
+}
+
+.delete-btn {
+    width: 10px;
+    height: 10px;
+    font-size: 20px;
+    position: relative;
+    top: 10px;
+    right: -150px;
+    color: #999;
+    user-select: none;
+    cursor: pointer;
+}

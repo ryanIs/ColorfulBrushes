@@ -1,7 +1,5 @@
 # Colorful Brushes
 
-<hr>
-
 Welcome to colorful brushes!
 Colorful brushes is a simple CRUD application built with backbone.js.
 
