@@ -1,13 +1,14 @@
-/**
- * TODO:
- * delete
- * 
- * print 3 resumes
- * ipad images (of projects)
+ /*
+    Objectives:
+
+    [X] Implement delete x button (176)
+    [ ] Compile less files
+    [ ] Upload to portfolio & github
  */
 
 function cl(str) { console.log(str); }
 
+// Implement LESS configuration
 var less = {
     env: "development",
     async: false,
@@ -42,17 +43,21 @@ requirejs.config({
         backbone: "backbone.dev"
     }
 
-})
+});
 
+// Alert user
 function alertMessage(msg) {
     alert(msg);
 }
+
+// Clear create-new-brush UI inputs
 function clearCreateBrushUI() {
     $("#create-name").val("");
     $("#create-price").val("");
     $("#new-brush-color").css("background-color", "#444");
 }
 
+// Ensure valid price field input
 function checkValidFields(brushName, brushPrice) {
     let priceChunks = brushPrice.split("$");
     if(priceChunks.length < 1) return false;
@@ -63,7 +68,8 @@ function checkValidFields(brushName, brushPrice) {
     }
 }
 
-function setupUserInterface($, brushes, addBrush) {
+// Initialize functionality for controllers
+function setupUserInterface($, brushes, addBrush, removeBrush) {
 
     //$(".create-UI-wrapper").hide();
 
@@ -98,6 +104,19 @@ function setupUserInterface($, brushes, addBrush) {
             alertMessage("Invalid input fields. (e.g. Brush Name: \"My new Brush\" Price: \"$14.99\")");
         }
 
+    });
+
+    setupUserInterfaceDeleteBtn($, removeBrush);
+}
+
+// Use seperate function since the View is reloaded
+// Note: use Backbone events for this to minimize this roundabout method
+function setupUserInterfaceDeleteBtn($, removeBrush) {
+
+    // Deleting a brush
+    $(".delete-btn").click(function(clickEvent) {
+        let removeBrushId = parseInt( clickEvent.currentTarget.id ); cl(removeBrushId);
+        removeBrush(removeBrushId); 
     });
 
 }
@@ -145,6 +164,7 @@ define(["jquery", "underscore", "backbone", "less"], function($, _, Backbone, le
         })
     ])
 
+    // Add new brush model to brushes collection
     var addNewBrush = function (brushModelObject) {
         brushes.add( new Brush({
             name: brushModelObject.name, 
@@ -152,6 +172,11 @@ define(["jquery", "underscore", "backbone", "less"], function($, _, Backbone, le
             color: brushModelObject.color,
             id: brushes.models.length
         }) );
+    };
+
+    // Remove brush model at Id
+    var removeBrush = function (brushId) { cl(brushId);
+        brushes.remove(brushId); cl(brushes)
     };
 
     // ==================================================================
@@ -165,26 +190,23 @@ define(["jquery", "underscore", "backbone", "less"], function($, _, Backbone, le
 
         tagName: "div",
 
-        // Delete event
+        // Events
         events: {
-            "click .delete-btn": "removeBrush"
+
         },
 
         // Init addition and deletion listeners
         initialize: function() {
             this.listenTo(brushes, "add", this.addBrush);
-            this.model.on("destroy", this.addBrush, this);
+            this.listenTo(brushes, "remove", this.render);
         },
 
         // Update UI when brushes are added
         addBrush: function(brush) {
             this.$el.append(this.template(brush.toJSON()));
-        },
-        
-        removeBrush: function(event) {
-            //this.$el.remove( $("#" + $(this.)).id() );
-            //brushes[$(this.$el).id()].destroy();
-            this.model.destroy();
+
+            // Remove button functionality
+            setupUserInterfaceDeleteBtn($, removeBrush);
         },
 
         // Template HTML (underscore.js)
@@ -193,10 +215,23 @@ define(["jquery", "underscore", "backbone", "less"], function($, _, Backbone, le
         // Render data to DOM
         render: function() {
 
-            for(let i = 0; i < brushes.models.length; i++) {
-                this.$el.append(this.template(brushes.models[i].toJSON()));
-                //console.log( _.template($("#brush-view-template").html() ));
-                cl(i);
+            // Clear all html
+            this.$el.html("");
+
+            // Map through models and display each child
+            for(let i = 0; i < brushes.models.length; i++) { cl(brushes.models[i]);
+
+                // Set Id for deletion reference
+               // brushes.models[i].id = i; 
+                //brushes.models[i].attributes.id = i; 
+                let nodeJSON = brushes.models[i].toJSON();
+                //nodeJSON.objectId = brushes.models[i].id; cl(nodeJSON);
+
+                // Append
+                this.$el.append(this.template(nodeJSON));
+
+                // Remove button functionality
+                setupUserInterfaceDeleteBtn($, removeBrush);
             }
 
             return this;
@@ -208,6 +243,6 @@ define(["jquery", "underscore", "backbone", "less"], function($, _, Backbone, le
 
     App.render();
 
-    setupUserInterface($, brushes, addNewBrush);
+    setupUserInterface($, brushes, addNewBrush, removeBrush);
 
 });
